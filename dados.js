@@ -25,19 +25,19 @@ var Dados = /** @class */ (function () {
     Dados.prototype.premioObtenido = function () {
         var premio = "Ah perdido, su dinero actual es de ".concat(this.jugador.getDinero());
         if (this.verificarGenerala()) {
-            premio = "\u00A1Felicidades, obtuviste Generala! Ganaste el premio Mayor.";
+            premio = "\u00A1Felicidades, obtuviste Generala! Ganaste el premio Mayor; $ ".concat(this.jugador.getApuesta() * 10, ".");
             this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 10);
         }
         else if (this.verificarEscalera()) {
-            premio = "\u00A1Felicidades, Obtuviste escalera! Ganaste el cuarto premio";
+            premio = "\u00A1Felicidades, Obtuviste escalera! Ganaste el cuarto premio, $ ".concat(this.jugador.getApuesta() * 2);
             this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 2);
         }
         else if (this.verificarPoker()) {
-            premio = "\u00A1Felicidades, obtuviste Poker! Ganaste el tercer premio";
+            premio = "\u00A1Felicidades, obtuviste Poker! Ganaste el tercer premio, $ ".concat(this.jugador.getApuesta() * 4);
             this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 4);
         }
         else if (this.verificarFull()) {
-            premio = "\u00A1Obtuviste Full! Ganaste el segundo premio";
+            premio = "\u00A1Obtuviste Full! Ganaste el segundo premio, $ ".concat(this.jugador.getApuesta() * 8);
             this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 8);
         }
         else {
@@ -98,18 +98,24 @@ var Dados = /** @class */ (function () {
         }
         return true;
     };
-    /* Obtenemos el primer elemento del arreglo para compararlo con los demás.Contar la
-    cantidad de elementos iguales al primer elemento, retornamos verdadero si hay cuatro
-    elementos iguales al primer elemento*/
+    /* Utilizamos un bucle for para iterar sobre cada elemento del array.
+    luego utilizamos otro bucle for anidado para contar el número de ocurrencias
+    en el array. Si elememento aparece cuatro veces en el array, retorna true.Si
+    el bucle exterior se completa sin encontrar cuatro números iguales, retorna false.*/
     Dados.prototype.verificarPoker = function () {
-        var primerElemento = this.dados[0];
-        var contador = 0;
-        for (var i = 1; i < this.dados.length; i++) {
-            if (this.dados[i] === primerElemento) {
-                contador++;
+        for (var i = 0; i < this.dados.length; i++) {
+            var elemActual = this.dados[i];
+            var count = 0;
+            for (var j = 0; j < this.dados.length; j++) {
+                if (this.dados[j] === elemActual) {
+                    count++;
+                }
+                if (count === 4) {
+                    return true;
+                }
             }
         }
-        return contador === 3;
+        return false;
     };
     /*Primero ordenamos el arreglo de menor a mayor con sort. Luego, iteramos a través de cada
     elemento del arreglo y verificamos si es igual al elemento anterior más 1. Si encontramos

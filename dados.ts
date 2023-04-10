@@ -34,16 +34,16 @@ export class Dados {
         private premioObtenido(): String {
                 let premio: String = `Ah perdido, su dinero actual es de ${this.jugador.getDinero()}`;
                 if (this.verificarGenerala()) {
-                        premio = `¡Felicidades, obtuviste Generala! Ganaste el premio Mayor.`;
+                        premio = `¡Felicidades, obtuviste Generala! Ganaste el premio Mayor; $ ${this.jugador.getApuesta() * 10}.`
                         this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 10);
                 } else if (this.verificarEscalera()) {
-                        premio = `¡Felicidades, Obtuviste escalera! Ganaste el cuarto premio`;
+                        premio = `¡Felicidades, Obtuviste escalera! Ganaste el cuarto premio, $ ${this.jugador.getApuesta() * 2}`
                         this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 2);
                 } else if (this.verificarPoker()) {
-                        premio = `¡Felicidades, obtuviste Poker! Ganaste el tercer premio`;
+                        premio = `¡Felicidades, obtuviste Poker! Ganaste el tercer premio, $ ${this.jugador.getApuesta() * 4}`
                         this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 4);
                 } else if (this.verificarFull()) {
-                        premio = `¡Obtuviste Full! Ganaste el segundo premio`;
+                        premio = `¡Obtuviste Full! Ganaste el segundo premio, $ ${this.jugador.getApuesta() * 8}`
                         this.jugador.setDinero(this.jugador.getDinero() + this.jugador.getApuesta() * 8);
                 } else {
                         premio = `Lo siento, no obtuviste ninguna combinación ganadora, su dinero actual es de ${this.jugador.getDinero()}`;
@@ -122,22 +122,25 @@ export class Dados {
                 return true;
         }
 
-        /* Obtenemos el primer elemento del arreglo para compararlo con los demás.Contar la 
-        cantidad de elementos iguales al primer elemento, retornamos verdadero si hay cuatro
-        elementos iguales al primer elemento*/
+        /* Utilizamos un bucle for para iterar sobre cada elemento del array.
+        luego utilizamos otro bucle for anidado para contar el número de ocurrencias 
+        en el array. Si elememento aparece cuatro veces en el array, retorna true.Si 
+        el bucle exterior se completa sin encontrar cuatro números iguales, retorna false.*/
 
-        private verificarPoker(): boolean {
-
-                const primerElemento = this.dados[0];
-
-                let contador = 0;
-                for (let i = 1; i < this.dados.length; i++) {
-                        if (this.dados[i] === primerElemento) {
-                                contador++;
+        verificarPoker(): boolean {
+                for (let i = 0; i < this.dados.length; i++) {
+                        const elemActual = this.dados[i];
+                        let count = 0;
+                        for (let j = 0; j < this.dados.length; j++) {
+                                if (this.dados[j] === elemActual) {
+                                        count++;
+                                }
+                                if (count === 4) {
+                                        return true;
+                                }
                         }
                 }
-
-                return contador === 3;
+                return false;
         }
 
         /*Primero ordenamos el arreglo de menor a mayor con sort. Luego, iteramos a través de cada

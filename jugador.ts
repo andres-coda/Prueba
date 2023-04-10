@@ -38,7 +38,7 @@ export class Jugador {
         console.clear();
         console.log(blue ("====================================="));
         console.log( red (`||                                 ||`));
-        console.log( red (`||   BIENBENIDO A NUESTRO CASINO   ||`));
+        console.log( red (`||   BIENVENIDO A NUESTRO CASINO   ||`));
         console.log( red (`||                                 ||`));
         console.log( red (`||   ESTOS  SON NUESTROS JUEGOS    ||`));
         console.log( red (`||                                 ||`));
@@ -80,7 +80,7 @@ export class Jugador {
                 menu.fabrica(valor,this);
             } else {
                 if ((valor<0)||(valor>=5)) {
-                    console.log("Debe ingrsear opciones del menu".toUpperCase());
+                    console.log("Debe ingresar opciones del menu".toUpperCase());
                     console.log("\n");
                     readlineSync.question("Presiona " + green("Enter") + " para continuar...");
                 }

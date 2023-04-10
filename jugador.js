@@ -28,7 +28,7 @@ var Jugador = /** @class */ (function () {
         console.clear();
         console.log((0, colors_1.blue)("====================================="));
         console.log((0, colors_1.red)("||                                 ||"));
-        console.log((0, colors_1.red)("||   BIENBENIDO A NUESTRO CASINO   ||"));
+        console.log((0, colors_1.red)("||   BIENVENIDO A NUESTRO CASINO   ||"));
         console.log((0, colors_1.red)("||                                 ||"));
         console.log((0, colors_1.red)("||   ESTOS  SON NUESTROS JUEGOS    ||"));
         console.log((0, colors_1.red)("||                                 ||"));
@@ -67,7 +67,7 @@ var Jugador = /** @class */ (function () {
             }
             else {
                 if ((valor < 0) || (valor >= 5)) {
-                    console.log("Debe ingrsear opciones del menu".toUpperCase());
+                    console.log("Debe ingresar opciones del menu".toUpperCase());
                     console.log("\n");
                     readlineSync.question("Presiona " + (0, colors_1.green)("Enter") + " para continuar...");
                 }
